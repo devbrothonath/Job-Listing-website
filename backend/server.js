@@ -1,11 +1,18 @@
 const express = require("express");
 const { default: mongoose } = require("mongoose");
 require("dotenv").config();
+const userRoutes = require("./routes/userRoutes")
 
 const app = express();
 
 const PORT = process.env.PORT;
 const DB_URI = process.env.MONGO_URI;
+
+// middleware
+app.use(express.json())
+
+// routes
+app.use("/api/user", userRoutes);
 
 mongoose
   .connect(DB_URI)
