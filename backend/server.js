@@ -46,3 +46,20 @@ app.get("/health", (req, res) => {
     });
   }
 });
+
+// error handler middleware
+app.use((req, res, next) => {
+  const err = new Error("Something went wrong! Please try after some time")
+  err.status = 404;
+  next(err);
+})
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      status: err.status || 500,
+      message: err.message
+    }
+  })
+})
