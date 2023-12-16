@@ -2,6 +2,7 @@ const express = require("express");
 const { default: mongoose } = require("mongoose");
 require("dotenv").config();
 const userRoutes = require("./routes/userRoutes")
+const jobRoutes = require("./routes/jobRoutes");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json())
 
 // routes
 app.use("/api/user", userRoutes);
+app.use("/api/user/jobs", jobRoutes);
 
 mongoose
   .connect(DB_URI)
@@ -48,18 +50,18 @@ app.get("/health", (req, res) => {
 });
 
 // error handler middleware
-app.use((req, res, next) => {
-  const err = new Error("Something went wrong! Please try after some time")
-  err.status = 404;
-  next(err);
-})
+// app.use((req, res, next) => {
+//   const err = new Error("Something went wrong! Please try after some time")
+//   err.status = 404;
+//   next(err);
+// })
 
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.send({
-    error: {
-      status: err.status || 500,
-      message: err.message
-    }
-  })
-})
+// app.use((err, req, res, next) => {
+//   res.status(err.status || 500);
+//   res.send({
+//     error: {
+//       status: err.status || 500,
+//       message: err.message
+//     }
+//   })
+// })
