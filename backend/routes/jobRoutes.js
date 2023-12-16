@@ -1,10 +1,17 @@
 const { Router } = require("express");
 
-// controller functions
-const { addJob } = require("../controllers/addJobController")
+//! controller functions
+const { getJobs,createJob, updateJob } = require("../controllers/jobController")
 
 const router = Router();
 
-router.post("/add-job", addJob);
+//! GET all jobs
+router.get("/", getJobs);
+
+//! ADD a new job
+router.post("/", createJob);
+
+//! UPDATE a job
+router.patch("/:id", updateJob);
 
 module.exports = router;

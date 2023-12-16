@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const jobPostSchema = new mongoose.Schema({
+const jobSchema = new mongoose.Schema({
   companyName: { type: String, required: true },
   logoURL: { type: String, required: true },
   recruiterName: { type: String },
@@ -16,7 +16,7 @@ const jobPostSchema = new mongoose.Schema({
   information: { type: String },
 });
 
-jobPostSchema.statics.addJob = async function ({
+jobSchema.statics.createJob = async function ({
   companyName,
   logoURL,
   position,
@@ -29,7 +29,7 @@ jobPostSchema.statics.addJob = async function ({
   skillsRequired,
   information,
 }) {
-  // validation
+  //! validation
   if (
     !companyName ||
     !logoURL ||
@@ -62,7 +62,7 @@ jobPostSchema.statics.addJob = async function ({
   return newJob;
 };
 
-const jobPost = mongoose.model("jobPost", jobPostSchema);
+const Job = mongoose.model("job", jobSchema);
 
-module.exports = jobPost;
+module.exports = Job;
 
