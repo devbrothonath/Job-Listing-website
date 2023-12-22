@@ -1,19 +1,32 @@
-import "./filter.css"
+import { useState } from "react";
+import "./filter.css";
+import SkillsFilter from "../skills/SkillsFilter";
+import JobForm from "../jobForm/JobForm";
 
-const Filter = () => {
+const Filter = ({ query, handleInputChange, handleClick, handleChange, value }) => {
+  
+  
   return (
     <div className="filter">
-      <div className="search">
-        <input id="searchBar" type="text" placeholder="Type any job title" />
-      </div>
-      <div className="flex">
+      <form>
+        <div className="search">
+          <input
+            name="searchBar"
+            id="searchBar"
+            type="text"
+            placeholder="Type any job title"
+            onChange={handleInputChange}
+            value={query}
+          />
+        </div>
+        {/* <div className="flex">
           <div className="skills">
-            <select name="Add skills" id="" required>
-              <option value="" disabled selected>
+            <select name="Add skills" id="" required defaultValue={defaultSkill}>
+              <option value="" disabled>
                 Skills
               </option>
-              <option value="frontend">Frontend</option>
-              <option value="backend">Backend</option>
+              <option onClick={handleClick} value={value}>Frontend</option>
+              <option onClick={handleClick} value={value}>Backend</option>
             </select>
           </div>
           <div className="selected">
@@ -29,6 +42,13 @@ const Filter = () => {
           <div className="clear">
             <div>Clear</div>
           </div>
+        </div> */}
+      </form>
+      <div className="skillFilter">
+        <SkillsFilter handleChange={handleChange} handleClick={handleClick} />
+      </div>
+      <div className="jobForm">
+        <JobForm />
       </div>
     </div>
   );

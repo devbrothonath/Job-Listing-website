@@ -8,6 +8,19 @@ const getJobs = async (req, res) => {
   res.status(200).json(jobs);
 };
 
+// ! get a single job
+const getJob = async (req, res) => {
+  const {id} = req.params;
+
+  const job = await Job.findById(id)
+
+  if(!job) {
+    return res.status(404).json({error: "No such job"})
+  }
+
+  res.status(200).json(job)
+}
+
 //! add a new job
 const createJob = async (req, res) => {
   const jobData = req.body;
@@ -43,4 +56,4 @@ const updateJob = async (req, res) => {
   res.status(200).json(job);
 };
 
-module.exports = { getJobs, createJob, updateJob };
+module.exports = { getJobs, getJob, createJob, updateJob };
