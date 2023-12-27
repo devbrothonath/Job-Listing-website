@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Rectangle1 from "../../assets/Rectangle1.png"
+
 import "./navbar.css"
 
 const Navbar = () => {
@@ -9,6 +9,18 @@ const Navbar = () => {
             <Link to="/">
                 Jobfinder
             </Link>
+            <nav>
+                <div>
+                    <Link to="/register">
+                        Register
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/login">
+                        Login
+                    </Link>
+                </div>
+            </nav>
         </div>
     )
 }
