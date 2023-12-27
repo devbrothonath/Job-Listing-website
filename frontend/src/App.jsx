@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import JobDetails from "./pages/JobDetails";
+import JobForm from "./pages/JobForm";
+
 
 export default function App() {
 return (
@@ -16,6 +18,10 @@ return (
                 <Route
                     path="/:id"
                     element={<JobDetails />}>
+                </Route>
+                <Route
+                    path="/add-job"
+                    element={<JobForm />}>
                 </Route>
             </Routes>
         </div>

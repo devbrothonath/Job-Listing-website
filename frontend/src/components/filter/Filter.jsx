@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./filter.css";
 import SkillsFilter from "../skills/SkillsFilter";
-import JobForm from "../jobForm/JobForm";
+import JobFormBtn from "../jobFormBtn/JobFormBtn";
 
 const Filter = ({ query, handleInputChange, handleClick, handleChange, value }) => {
   
@@ -47,8 +47,8 @@ const Filter = ({ query, handleInputChange, handleClick, handleChange, value }) 
       <div className="skillFilter">
         <SkillsFilter handleChange={handleChange} handleClick={handleClick} />
       </div>
-      <div className="jobForm">
-        <JobForm />
+      <div className="jobFormButton">
+        <JobFormBtn />
       </div>
     </div>
   );
