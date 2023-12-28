@@ -51,6 +51,8 @@ app.get("/health", (req, res) => {
   }
 });
 
+module.exports = app
+
 // error handler middleware
 // app.use((req, res, next) => {
 //   const err = new Error("Something went wrong! Please try after some time")
