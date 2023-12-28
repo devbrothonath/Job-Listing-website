@@ -2,9 +2,11 @@ import { useState } from "react";
 import "./filter.css";
 import SkillsFilter from "../skills/SkillsFilter";
 import JobFormBtn from "../jobFormBtn/JobFormBtn";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Filter = ({ query, handleInputChange, handleClick, handleChange, value }) => {
   
+  const { user } = useAuthContext();
   
   return (
     <div className="filter">
@@ -47,9 +49,9 @@ const Filter = ({ query, handleInputChange, handleClick, handleChange, value }) 
       <div className="skillFilter">
         <SkillsFilter handleChange={handleChange} handleClick={handleClick} />
       </div>
-      <div className="jobFormButton">
+      {user && (<div className="jobFormButton">
         <JobFormBtn />
-      </div>
+      </div>)}
     </div>
   );
 };

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const JobForm = () => {
+  const { user } = useAuthContext();
   const [companyName, setCompanyName] = useState("");
   const [logoURL, setLogoURL] = useState("");
   const [position, setPosition] = useState("");
@@ -17,6 +19,12 @@ const JobForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+
+    if (!user) {
+      setError("You must be logged in")
+      return
+    }
 
     const job = {
       companyName,
@@ -37,6 +45,7 @@ const JobForm = () => {
       body: JSON.stringify(job),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${user.token}`
       },
     });
     const json = await response.json();
@@ -60,6 +69,8 @@ const JobForm = () => {
       console.log("New Job Added", json);
     } 
   };
+
+  const defaultJobType = "";
   return (
     <div>
         <div>
@@ -93,17 +104,19 @@ const JobForm = () => {
           value={salary}
         />
         <label>Job Type</label>
-        <input
-          type="text"
-          onChange={(e) => setJobType(e.target.value)}
-          value={jobType}
-        />
+        <select name="jobType" id="job-type"  onChange={(e) => setJobType(e.target.value)} value={jobType}>
+          <option value="" disabled>Select</option>
+          <option value="Full-Time">Full-Time</option>
+          <option value="Part-Time">Part-Time</option>
+        </select>
+
         <label>Remote/Office</label>
-        <input
-          type="text"
-          onChange={(e) => setRemote(e.target.value)}
-          value={remote}
-        />
+        <select name="remote" id="remote"  onChange={(e) => setRemote(e.target.value)} value={remote}>
+          <option value="" disabled>Select</option>
+          <option value="Remote">Remote</option>
+          <option value="Office">Office</option>
+        </select>
+        
         <label>Location</label>
         <input
           type="text"

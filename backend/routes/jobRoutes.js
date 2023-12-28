@@ -2,6 +2,7 @@ const { Router } = require("express");
 
 //! controller functions
 const { getJobs, getJob, createJob, updateJob } = require("../controllers/jobController")
+const requireAuth = require("../middleware/requireAuth")
 
 const router = Router();
 
@@ -12,9 +13,9 @@ router.get("/", getJobs);
 router.get("/:id", getJob);
 
 //! ADD a new job
-router.post("/", createJob);
+router.post("/", requireAuth, createJob);
 
 //! UPDATE a job
-router.patch("/:id", updateJob);
+router.patch("/:id", requireAuth, updateJob);
 
 module.exports = router;
