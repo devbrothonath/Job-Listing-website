@@ -12,7 +12,7 @@ const JobDetails = () => {
   const [job, setJob] = useState([]);
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch(`http://localhost:8000/api/jobs/${id}`);
+      const response = await fetch(`https://job-listing-website-devbrotho.onrender.com/api/jobs/${id}`);
 
       const json = await response.json();
 
