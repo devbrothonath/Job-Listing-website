@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const response = await fetch("http://localhost:8000/api/jobs");
+      const response = await fetch("https://job-listing-website-devbrotho.onrender.com/");
       try {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
