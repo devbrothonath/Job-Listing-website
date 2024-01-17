@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 
 const PORT = process.env.PORT;
-const DB_URI = process.env.MONGO_URI;
+// const DB_URI = mongodb+srv://namDoyun:doyunblog@cluster0.49z1yqf.mongodb.net/job-listing
 
 // middleware
 app.use(express.json())
@@ -19,7 +19,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/jobs", jobRoutes);
 
 mongoose
-  .connect(DB_URI)
+  .connect("mongodb+srv://namDoyun:doyunblog@cluster0.49z1yqf.mongodb.net/job-listing")
   .then(() => {
     app.listen(PORT, () => {
       console.log(`server listening at ${PORT}`);
